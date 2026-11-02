@@ -1,0 +1,56 @@
+order_date,region,product,units_sold,unit_price,revenue,customer_type,sales_channel,satisfaction
+2024-01-05,North,Notebook,40,2.5,100.0,Student,Campus store,4
+2024-01-08,South,Pen,120,0.8,96.0,Student,Online,5
+2024-01-12,East,Backpack,15,28.0,420.0,Faculty,Campus store,5
+2024-01-18,West,Water bottle,35,8.5,297.5,Student,Kiosk,4
+2024-01-22,North,Lab coat,8,22.0,176.0,Faculty,Campus store,3
+2024-02-03,South,Notebook,55,2.5,137.5,Student,Online,4
+2024-02-09,East,Pen,90,0.8,72.0,Student,Campus store,5
+2024-02-14,West,USB drive,18,12.0,216.0,Faculty,Online,4
+2024-02-20,North,Backpack,12,28.0,336.0,Student,Campus store,5
+2024-02-27,South,Water bottle,22,8.5,187.0,Visitor,Kiosk,3
+2024-03-04,East,Notebook,48,2.5,120.0,Student,Online,4
+2024-03-11,West,Pen,110,0.8,88.0,Student,Campus store,5
+2024-03-16,North,Highlighter,60,1.2,72.0,Student,Kiosk,4
+2024-03-21,South,Lab coat,6,22.0,132.0,Faculty,Campus store,2
+2024-03-28,East,USB drive,25,12.0,300.0,Student,Online,5
+2024-04-02,West,Notebook,70,2.5,175.0,Student,Campus store,4
+2024-04-09,North,Backpack,9,28.0,252.0,Visitor,Online,4
+2024-04-15,South,Pen,130,0.8,104.0,Student,Kiosk,5
+2024-04-22,East,Water bottle,40,8.5,340.0,Student,Campus store,5
+2024-04-29,West,Highlighter,45,1.2,54.0,Faculty,Online,
+2024-05-06,North,Notebook,80,2.5,200.0,Student,Campus store,4
+2024-05-13,South,USB drive,14,12.0,168.0,Faculty,Campus store,3
+2024-05-18,East,Lab coat,,22.0,,Faculty,Online,4
+2024-05-25,West,Pen,95,0.8,76.0,Student,Kiosk,5
+2024-06-03,North,Water bottle,28,8.5,238.0,Student,Campus store,4
+2024-06-10,South,Backpack,11,28.0,308.0,Student,Online,5
+2024-06-17,East,Notebook,62,2.5,155.0,Student,Campus store,4
+2024-06-24,West,Highlighter,50,1.2,60.0,Student,Kiosk,3
+2024-07-01,North,Pen,140,0.8,112.0,Student,Online,5
+2024-07-08,South,USB drive,20,12.0,240.0,Faculty,Campus store,4
+2024-07-15,East,Water bottle,33,8.5,280.5,Visitor,Kiosk,4
+2024-07-22,West,Notebook,58,2.5,145.0,Student,Campus store,5
+2024-07-29,North,Backpack,7,28.0,196.0,Faculty,Online,2
+2024-08-05,South,Pen,125,0.8,100.0,Student,Campus store,5
+2024-08-12,East,Lab coat,10,22.0,220.0,Faculty,Campus store,4
+2024-08-19,West,USB drive,16,12.0,192.0,Student,Online,4
+2024-08-26,North,Highlighter,72,1.2,86.4,Student,Kiosk,5
+2024-09-03,South,Notebook,90,2.5,225.0,Student,Campus store,4
+2024-09-10,East,Water bottle,19,8.5,161.5,Visitor,Online,3
+2024-09-17,West,Pen,100,0.8,80.0,Student,Kiosk,5
+2024-09-24,North,Backpack,13,28.0,364.0,Student,Campus store,5
+2024-10-01,South,USB drive,22,12.0,264.0,Faculty,Online,4
+2024-10-08,East,Notebook,66,2.5,165.0,Student,Campus store,4
+2024-10-15,West,Highlighter,38,1.2,45.6,Student,Kiosk,4
+2024-10-22,North,Pen,150,0.8,120.0,Student,Online,5
+2024-10-22,North,Pen,150,0.8,120.0,Student,Online,5
+2024-10-29,South,Water bottle,27,,229.5,Student,Campus store,4
+2024-11-05,East,Lab coat,5,22.0,110.0,Faculty,Campus store,3
+2024-11-12,West,Backpack,10,28.0,280.0,Visitor,Online,5
+2024-11-19,North,Notebook,85,2.5,212.5,Student,Campus store,4
+2024-11-26,South,USB drive,12,12.0,144.0,Student,Kiosk,4
+2024-12-03,East,Pen,88,0.8,70.4,Student,Campus store,5
+2024-12-10,West,Water bottle,31,8.5,263.5,Faculty,Online,4
+2024-12-17,North,Highlighter,41,1.2,49.2,Student,Kiosk,
+2024-12-23,South,Notebook,73,2.5,182.5,Student,Campus store,4
