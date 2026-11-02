@@ -1,6 +1,5 @@
-"""AI CSV Insights and Reporting System — premium Streamlit dashboard."""
 
-from __future__ import annotations
+"""AI CSV Insights and Reporting System."""
 
 from pathlib import Path
 
@@ -25,7 +24,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# PREMIUM DASHBOARD DESIGN
+# PREMIUM DARK DASHBOARD DESIGN
 st.markdown(
     """
     <style>
@@ -36,27 +35,57 @@ st.markdown(
         --text: #F1F5F9;
     }
 
+    /* Main background */
     .stApp {
         background:
-            radial-gradient(ellipse at 12% 0%, rgba(91, 72, 190, .18), transparent 34%),
-            radial-gradient(ellipse at 88% 8%, rgba(37, 99, 235, .13), transparent 30%),
+            radial-gradient(ellipse at 12% 0%, rgba(91,72,190,.18), transparent 34%),
+            radial-gradient(ellipse at 88% 8%, rgba(37,99,235,.13), transparent 30%),
             var(--bg);
         color: var(--text);
     }
 
-    .block-container {
-        max-width: 1450px;
-        padding-top: 2rem;
-        padding-bottom: 3rem;
+    /* REMOVE STREAMLIT TOP HEADER AND DEPLOY MENU */
+    header[data-testid="stHeader"] {
+        display: none !important;
+        height: 0 !important;
+        visibility: hidden !important;
     }
 
+    [data-testid="stToolbar"] {
+        display: none !important;
+    }
+
+    [data-testid="stDecoration"] {
+        display: none !important;
+    }
+
+    #MainMenu {
+        visibility: hidden;
+    }
+
+    footer {
+        visibility: hidden;
+    }
+
+    /* REMOVE EXTRA SPACE ABOVE SIDEBAR */
     section[data-testid="stSidebar"] {
         background: #10182A;
         border-right: 1px solid var(--border);
     }
 
-    section[data-testid="stSidebar"] > div {
-        padding-top: 1.5rem;
+    section[data-testid="stSidebar"] > div:first-child {
+        padding-top: 0 !important;
+    }
+
+    section[data-testid="stSidebar"] [data-testid="stSidebarContent"] {
+        padding-top: 0 !important;
+    }
+
+    /* MAIN CONTENT SPACING */
+    .block-container {
+        max-width: 1450px;
+        padding-top: 1rem !important;
+        padding-bottom: 3rem;
     }
 
     section[data-testid="stSidebar"] * {
@@ -65,7 +94,7 @@ st.markdown(
 
     h1, h2, h3, h4 {
         color: var(--text) !important;
-        letter-spacing: -0.025em;
+        letter-spacing: -.025em;
         font-weight: 700 !important;
     }
 
@@ -73,12 +102,19 @@ st.markdown(
         color: #C0CCDE;
     }
 
+    /* SIDEBAR */
+    section[data-testid="stSidebar"] {
+        background: #10182A;
+        border-right: 1px solid #293754;
+    }
+
+    /* METRIC CARDS */
     [data-testid="stMetric"] {
         background: linear-gradient(145deg, #192641, #121B2F);
         border: 1px solid #30415F;
         border-radius: 16px;
         padding: 18px 20px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, .14);
+        box-shadow: 0 8px 24px rgba(0,0,0,.14);
     }
 
     [data-testid="stMetricLabel"] {
@@ -91,7 +127,9 @@ st.markdown(
         font-weight: 750;
     }
 
-    .stButton > button, .stDownloadButton > button {
+    /* BUTTONS */
+    .stButton > button,
+    .stDownloadButton > button {
         background: linear-gradient(100deg, #765CF6, #347FEA);
         color: #FFFFFF !important;
         border: 1px solid rgba(255,255,255,.10);
@@ -102,12 +140,14 @@ st.markdown(
         transition: all .2s ease;
     }
 
-    .stButton > button:hover, .stDownloadButton > button:hover {
+    .stButton > button:hover,
+    .stDownloadButton > button:hover {
         border-color: #B8ACFF;
-        box-shadow: 0 0 18px rgba(118, 92, 246, .28);
+        box-shadow: 0 0 18px rgba(118,92,246,.28);
         transform: translateY(-1px);
     }
 
+    /* CSV UPLOADER */
     [data-testid="stFileUploader"] {
         background: #151F34;
         border: 1px dashed #6476A0;
@@ -115,25 +155,38 @@ st.markdown(
         padding: 12px;
     }
 
-    [data-testid="stDataFrame"], [data-testid="stTable"] {
+    [data-testid="stFileUploader"] section {
+        background: #151F34 !important;
+        border-color: #6476A0 !important;
+    }
+
+    [data-testid="stFileUploader"] button {
+        background: #263653 !important;
+        color: white !important;
+    }
+
+    /* TABLES */
+    [data-testid="stDataFrame"],
+    [data-testid="stTable"] {
         border: 1px solid var(--border);
         border-radius: 12px;
         overflow: hidden;
     }
 
+    /* ALERTS AND EXPANDERS */
     [data-testid="stAlert"] {
         border-radius: 12px;
         border: 1px solid var(--border);
     }
 
     [data-testid="stExpander"] {
-        background: rgba(20, 31, 52, .72);
+        background: rgba(20,31,52,.72);
         border: 1px solid var(--border);
         border-radius: 12px;
     }
 
     div[role="radiogroup"] label {
-        background: rgba(28, 42, 67, .55);
+        background: rgba(28,42,67,.55);
         border-radius: 9px;
         padding: 7px 10px;
         margin-bottom: 4px;
@@ -143,14 +196,16 @@ st.markdown(
         border-color: var(--border);
     }
 
+    /* HOME HERO */
     .hero {
         padding: 30px 32px;
         border: 1px solid #34466B;
         border-radius: 22px;
-        background: linear-gradient(115deg, rgba(83, 65, 172, .30), rgba(28, 89, 158, .18)),
-                    #141E33;
+        background:
+            linear-gradient(115deg, rgba(83,65,172,.30), rgba(28,89,158,.18)),
+            #141E33;
         margin-bottom: 24px;
-        box-shadow: 0 16px 40px rgba(0, 0, 0, .18);
+        box-shadow: 0 16px 40px rgba(0,0,0,.18);
     }
 
     .hero-eyebrow {
@@ -164,7 +219,7 @@ st.markdown(
 
     .hero-title {
         color: #FFFFFF;
-        font-size: clamp(1.8rem, 4vw, 2.7rem);
+        font-size: clamp(1.8rem,4vw,2.7rem);
         font-weight: 800;
         letter-spacing: -.04em;
         line-height: 1.12;
@@ -217,38 +272,13 @@ st.markdown(
         background: #34D399;
         margin-right: 7px;
     }
-
-    /* REMOVE THE WHITE STREAMLIT TOP HEADER */
-    header[data-testid="stHeader"] {
-        background: #0B1020 !important;
-    }
-
-    [data-testid="stToolbar"] {
-        background: transparent !important;
-    }
-
-    [data-testid="stDecoration"] {
-        background: #0B1020 !important;
-    }
-
-    /* KEEP THE CSV UPLOADER DARK */
-    [data-testid="stFileUploader"] section {
-        background: #151F34 !important;
-        border-color: #6476A0 !important;
-    }
-
-    [data-testid="stFileUploader"] button {
-        background: #263653 !important;
-        color: white !important;
-    }
-
     </style>
     """,
     unsafe_allow_html=True,
 )
 
 
-def _init_state() -> None:
+def _init_state():
     defaults = {
         "original_df": None,
         "filename": None,
@@ -256,31 +286,34 @@ def _init_state() -> None:
         "ai_result": None,
         "pdf_path": None,
     }
+
     for key, value in defaults.items():
         if key not in st.session_state:
             st.session_state[key] = value
 
 
-def _reset_analysis() -> None:
+def _reset_analysis():
     st.session_state.ai_result = None
     st.session_state.pdf_path = None
 
 
-def _store_dataframe(df: pd.DataFrame, filename: str) -> None:
+def _store_dataframe(df, filename):
     st.session_state.original_df = df.copy()
     st.session_state.filename = filename
     st.session_state.load_error = None
     _reset_analysis()
 
 
-def _load_uploaded(uploaded) -> None:
+def _load_uploaded(uploaded):
     result = load_csv_bytes(uploaded.getvalue(), uploaded.name)
+
     if result.error:
         st.session_state.original_df = None
         st.session_state.filename = uploaded.name
         st.session_state.load_error = result.error
         _reset_analysis()
         return
+
     _store_dataframe(result.dataframe, result.filename)
 
 
@@ -312,11 +345,12 @@ with st.sidebar:
     uploaded = st.file_uploader(
         "Upload a CSV file",
         type=["csv"],
-        help=f"Maximum size is {MAX_UPLOAD_BYTES // (1024 * 1024)} MB. The original file is never edited.",
+        help=f"Maximum size is {MAX_UPLOAD_BYTES // (1024 * 1024)} MB.",
     )
 
     if uploaded is not None:
         file_id = f"{uploaded.name}-{uploaded.size}"
+
         if st.session_state.get("last_file_id") != file_id:
             _load_uploaded(uploaded)
             st.session_state.last_file_id = file_id
@@ -324,6 +358,7 @@ with st.sidebar:
     if SAMPLE_CSV.exists():
         if st.button("✨ Load sample dataset", use_container_width=True):
             result = load_csv_path(SAMPLE_CSV)
+
             if result.error:
                 st.session_state.load_error = result.error
             else:
@@ -346,7 +381,7 @@ with st.sidebar:
     st.caption("AI CSV Insights · Analytics Studio")
 
 
-df: pd.DataFrame | None = st.session_state.original_df
+df = st.session_state.original_df
 
 if st.session_state.load_error:
     st.error(st.session_state.load_error)
@@ -359,7 +394,9 @@ if page == "Home":
         """
         <div class="hero">
             <div class="hero-eyebrow">✦ AI-powered data workspace</div>
-            <div class="hero-title">Turn raw CSV data into<br>meaningful insights.</div>
+            <div class="hero-title">
+                Turn raw CSV data into<br>meaningful insights.
+            </div>
             <div class="hero-copy">
                 Explore your data, uncover quality issues, visualize patterns,
                 and generate AI-assisted findings — all in one place.
@@ -440,7 +477,9 @@ elif df is None:
     )
 
     st.title(page)
-    st.info("Upload a CSV file from the sidebar, or load the sample dataset to continue.")
+    st.info(
+        "Upload a CSV file from the sidebar, or load the sample dataset to continue."
+    )
 
 
 else:
@@ -452,7 +491,7 @@ else:
     categorical_stats = categorical_summary(df, groups)
     chart_specs = suggest_charts(df, groups)
 
-    # UPLOAD AND OVERVIEW
+    # UPLOAD & OVERVIEW
     if page == "Upload & Overview":
 
         st.markdown(
@@ -478,27 +517,17 @@ else:
             }
         )
 
-        st.dataframe(
-            type_table,
-            hide_index=True,
-            use_container_width=True,
-        )
+        st.dataframe(type_table, hide_index=True, use_container_width=True)
 
         st.subheader("Data preview")
-        st.caption(
-            "Showing the first 20 rows. Your original uploaded data is not modified."
-        )
+        st.caption("Showing the first 20 rows.")
 
-        st.dataframe(
-            df.head(20),
-            use_container_width=True,
-        )
+        st.dataframe(df.head(20), use_container_width=True)
 
         with st.expander("What do these column types mean?"):
             st.write(
-                "A **numeric** column contains numbers (sales, counts, prices). "
-                "A **categorical** column contains labels (region, product). "
-                "A **date** column contains dates. The app guesses these from the values."
+                "Numeric columns contain numbers. Categorical columns contain labels. "
+                "Date columns contain dates. The app identifies these from the values."
             )
 
     # DATA QUALITY
@@ -528,6 +557,7 @@ else:
 
         if quality.duplicate_rows:
             st.subheader("Example duplicate rows")
+
             dup_mask = df.duplicated(keep=False)
 
             st.dataframe(
@@ -558,19 +588,12 @@ else:
 
         if numeric_stats.empty:
             st.warning("This file has no numeric columns that can be summarized.")
-
         else:
             display = numeric_stats.copy()
 
             number_cols = [
-                "sum",
-                "mean",
-                "median",
-                "std_dev",
-                "min",
-                "q1",
-                "q3",
-                "max",
+                "sum", "mean", "median", "std_dev",
+                "min", "q1", "q3", "max",
             ]
 
             for col in number_cols:
@@ -589,7 +612,6 @@ else:
 
         if categorical_stats.empty:
             st.warning("This file has no categorical or date columns.")
-
         else:
             st.dataframe(
                 categorical_stats,
@@ -600,14 +622,14 @@ else:
         with st.expander("Understand the statistical terms"):
             st.markdown(
                 """
-                - **Count**: how many values were available
-                - **Sum**: all numbers added together
-                - **Mean**: the average
-                - **Median**: the middle value
-                - **Mode**: the most common value
-                - **Standard deviation**: how spread out the numbers are
-                - **Min / Max**: smallest and largest values
-                - **Q1 / Q3**: the 25th and 75th percentile (quartiles)
+                - **Count:** Number of available values
+                - **Sum:** All numbers added together
+                - **Mean:** Average
+                - **Median:** Middle value
+                - **Mode:** Most common value
+                - **Standard deviation:** How spread out the numbers are
+                - **Min / Max:** Smallest and largest values
+                - **Q1 / Q3:** 25th and 75th percentiles
                 """
             )
 
@@ -622,12 +644,12 @@ else:
         st.title("Interactive charts")
 
         st.caption(
-            "Chart suggestions are based on column types. A pattern in a chart is not proof of cause and effect."
+            "Chart suggestions are based on column types. "
+            "Patterns do not prove cause and effect."
         )
 
         if not chart_specs:
             st.warning("No suitable charts could be suggested for this file.")
-
         else:
             labels = [
                 f"{spec.title} ({spec.chart_type})"
@@ -654,7 +676,6 @@ else:
                     st.warning(
                         "This chart needs more usable values after ignoring blanks."
                     )
-
                 else:
                     figure.update_layout(
                         template="plotly_dark",
@@ -680,7 +701,7 @@ else:
         st.title("AI-powered insights")
 
         st.write(
-            "The app sends a **compact summary** of counts and statistics to an external AI model. "
+            "The app sends a compact summary of counts and statistics to an external AI model. "
             "It does not send the full CSV or individual raw records by default."
         )
 
@@ -710,27 +731,24 @@ else:
         result = st.session_state.ai_result
 
         if result is None:
-
             st.info(
                 "Generate insights when you're ready. If no API key is configured, "
-                "the app will show a helpful message instead of invented insights."
+                "the app will show a helpful message."
             )
 
         elif result.status == "ok" and result.text:
-
             st.success(result.message)
             st.markdown(result.text)
 
             st.caption(
-                "These comments are not proof of cause and effect. Treat them as careful suggestions."
+                "These comments are suggestions, not proof of cause and effect."
             )
 
         else:
-
             st.warning(result.message)
 
             st.caption(
-                "No AI insights were invented. Statistics, charts, and PDF sections still work."
+                "Statistics, charts, and PDF sections still work without AI insights."
             )
 
     # PDF REPORT
@@ -744,8 +762,8 @@ else:
         st.title("PDF report")
 
         st.write(
-            "Create a report containing the overview, data quality, statistics, up to four charts, "
-            "and AI insights if they were generated in this session."
+            "Create a report containing the overview, data quality, statistics, "
+            "up to four charts, and AI insights if generated."
         )
 
         ai_result = st.session_state.ai_result
@@ -780,13 +798,9 @@ else:
 
                     st.session_state.pdf_path = str(pdf_path)
 
-                except Exception as exc:  # noqa: BLE001
-
+                except Exception as exc:
                     st.session_state.pdf_path = None
-
-                    st.error(
-                        f"The PDF could not be created. Details: {exc}"
-                    )
+                    st.error(f"The PDF could not be created. Details: {exc}")
 
         pdf_path = st.session_state.pdf_path
 
@@ -804,8 +818,7 @@ else:
             )
 
         elif ai_text is None:
-
             st.caption(
-                "Tip: generate AI insights first if you want them included in the PDF. "
-                "The report can still be created without them."
+                "You can create the report without AI insights. "
+                "Generate insights first if you want them included."
             )
