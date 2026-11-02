@@ -4,6 +4,8 @@ A beginner-friendly college project. You upload a CSV file (a spreadsheet saved 
 
 You do **not** need to know programming to use the finished app. The steps below are written in everyday language.
 
+deploy link- https://ai-csv-insights-8vabt9q3kxpbyevvkv4rjo.streamlit.app
+
 ## What you can do
 
 - Upload a CSV file, with clear error messages if the file is empty or not a CSV
@@ -63,30 +65,7 @@ Install the required libraries:
 pip install -r requirements.txt
 ```
 
-## Optional: turn on AI insights
 
-1. Copy the example settings file and rename the copy to `.env`.
-2. Open `.env` in a text editor.
-3. Paste your own API key after `AI_API_KEY=`.
-4. If you are not using OpenAI, change `AI_API_BASE_URL` and `AI_MODEL`.
-
-Example:
-
-```
-AI_API_KEY=paste_your_key_here
-AI_API_BASE_URL=https://api.openai.com/v1
-AI_MODEL=gpt-4o-mini
-```
-
-Groq example:
-
-```
-AI_API_KEY=paste_your_key_here
-AI_API_BASE_URL=https://api.groq.com/openai/v1
-AI_MODEL=llama-3.1-8b-instant
-```
-
-Never put a real key in `README.md` or `.env.example`. Never share your `.env` file.
 
 **Safety notes**
 
